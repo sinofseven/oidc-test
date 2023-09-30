@@ -1,0 +1,17 @@
+name: test
+
+on:
+  push:
+
+permissions:
+  id-token: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::468072875359:role/oidc-test
+          aws-region: ca-central-1
+      - run: aws s3 ls
